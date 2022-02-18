@@ -34,6 +34,7 @@ function getFolderContextMenu($node, tree) {
                         $node = tree.create_node($node, { text: 'New File', icon: 'glyphicon glyphicon-file', a_attr: { type: 'file' } });
                         tree.deselect_all();
                         tree.select_node($node);
+                        tree.edit($node);
                     }
                 },
                 "Folder": {
@@ -44,6 +45,7 @@ function getFolderContextMenu($node, tree) {
                         $node = tree.create_node($node, { text: 'New Folder', icon: 'glyphicon glyphicon-folder-open', a_attr: { type: 'folder' } });
                         tree.deselect_all();
                         tree.select_node($node);
+                        tree.edit($node);
                     }
                 }
             }
