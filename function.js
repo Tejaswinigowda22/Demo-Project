@@ -12,10 +12,14 @@ $(function () {
         id3 = "Node" + i;
         elem = { "id": id1, "parent": id2, "text": id3, icon: 'glyphicon glyphicon-folder-open', "a_attr": { type: 'folder' } }
         var root = jsondata.push(elem);
+
     }
 
     createJSTree(jsondata);
+
+
 });
+
 
 function getFolderContextMenu($node, tree) {
     return {
@@ -31,16 +35,19 @@ function getFolderContextMenu($node, tree) {
                     "seperator_after": false,
                     "label": "File",
                     action: function (obj) {
-
-                        // $node.CreatedTime = new Date();
-                        // console.log($node);
-
-                        $node = tree.create_node($node, { date :new Date(), text: 'New File', icon: 'glyphicon glyphicon-file', a_attr: { type: 'file' } });
+                        $node = tree.create_node($node, { date: new Date(), text: 'New File', icon: 'glyphicon glyphicon-file', a_attr: { type: 'file' } });
                         tree.deselect_all();
-                        console.log($node);
+                        // console.log($node);
                         tree.select_node($node);
                         tree.edit($node);
+                        
 
+                        var createdNode = tree.get_node($node);
+                        // console.log(createdNode)
+
+                        createdNode.CreatedTime = new Date.toString();
+                       console.log(createdNode.CreatedTime)
+                        
                     }
                 },
                 "Folder": {
@@ -48,24 +55,17 @@ function getFolderContextMenu($node, tree) {
                     "seperator_after": false,
                     "label": "Folder",
                     action: function (obj) {
-                        if ($node.CreatedTime === undefined) {
-                            console.log("if------------");
-                            var dateArray = []
-                            dateArray.push(new Date());
-                            $node.CreatedTime = dateArray;
-                        } else {
-                            console.log("else-------------------------");
-
-                            $node.CreatedTime.push(new Date());
-                        }
-
-
-                        console.log($node);
+                        console.log($node.id);
                         $node = tree.create_node($node, { text: 'New Folder', icon: 'glyphicon glyphicon-folder-open', a_attr: { type: 'folder' } });
+
                         tree.deselect_all();
                         tree.select_node($node);
                         tree.edit($node);
+                        console.log("created node :" + $node)
+                        var createdNode = tree.get_node($node);
 
+                        createdNode.CreatedTime = new Date().toString();
+                        console.log(createdNode);
                     }
                 }
             }
@@ -76,6 +76,12 @@ function getFolderContextMenu($node, tree) {
             "label": "Rename",
             "action": function (obj) {
                 tree.edit($node);
+                var renamedNode = tree.get_node($node.id);
+                if (renamedNode.ModifiedTime === undefined) {
+                    renamedNode.ModifiedTime = new Date().toString();
+                } else {
+                    renamedNode.ModifiedTime = new Date().toString();
+                }
             }
         },
         "Remove": {
@@ -91,20 +97,15 @@ function getFolderContextMenu($node, tree) {
             "separator_after": false,
             "label": "Details",
             "action": function (obj) {
-                console.log($node.select_node)
-                console.log($node.a_attr);
-                var parent = $node.parent;
-                console.log(parent);
+                var id = $node.id;
+                console.log("node id :" + id);
 
-                // console.log($node.Date)
-                // console.log($node.a_attr.type);
-                // var currentdate = new Date();
-                // var datetime = "Date" + currentdate.getDate() + "/" + (currentdate.getMonth() + 1)
-                //     + "/" + currentdate.getFullYear() + "\n" + " Time " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-                // // alert(datetime + "\n" + "FILE TYPE:" + $node.a_attr.type);
-                // alert($node.CreatedTime[0]);
-
-
+                var nodeCreatedDate = tree.get_node(id);
+                if (nodeCreatedDate.ModifiedTime === undefined) {
+                    alert("Created time :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
+                } else {
+                    alert("Created Time :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
+                }
 
             }
         }
@@ -120,6 +121,12 @@ function getFileContextMenu($node, tree) {
             "label": "Rename",
             "action": function (obj) {
                 tree.edit($node);
+                var renamedNode = tree.get_node($node.id);
+                if (renamedNode.ModifiedTime === undefined) {
+                    renamedNode.ModifiedTime = new Date().toString();
+                } else {
+                    renamedNode.ModifiedTime = new Date().toString();
+                }
             }
         },
         "Remove": {
@@ -135,11 +142,15 @@ function getFileContextMenu($node, tree) {
             "separator_after": false,
             "label": "Details",
             "action": function (obj) {
-                console.log($node.a_attr.type);
-                var currentdate = new Date();
-                var datetime = "Date" + currentdate.getDate() + "/" + (currentdate.getMonth() + 1)
-                    + "/" + currentdate.getFullYear() + "\n" + " Time " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-                alert(datetime + "\n" + "FILE TYPE:" + $node.a_attr.type);
+                var id = $node.id;
+                console.log("node id :" + id);
+
+                var nodeCreatedDate = tree.get_node(id);
+                if (nodeCreatedDate.ModifiedTime === undefined) {
+                    alert("Created time :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
+                } else {
+                    alert("Created Time :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
+                }
 
 
             }
