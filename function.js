@@ -102,9 +102,9 @@ function getFolderContextMenu($node, tree) {
 
                 var nodeCreatedDate = tree.get_node(id);
                 if (nodeCreatedDate.ModifiedTime === undefined) {
-                    alert("Created time :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
+                    alert("Created Date :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
                 } else {
-                    alert("Created Time :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
+                    alert("Created Date :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
                 }
 
             }
@@ -147,9 +147,9 @@ function getFileContextMenu($node, tree) {
 
                 var nodeCreatedDate = tree.get_node(id);
                 if (nodeCreatedDate.ModifiedTime === undefined) {
-                    alert("Created time :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
+                    alert("Created Date :" + nodeCreatedDate.CreatedTime + "\nType: " + $node.a_attr.type);
                 } else {
-                    alert("Created Time :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
+                    alert("Created Date :" + nodeCreatedDate.CreatedTime + "\n Modified Date :" + nodeCreatedDate.ModifiedTime + "\nType: " + $node.a_attr.type);
                 }
 
 
