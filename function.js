@@ -6,7 +6,7 @@ $(function () {
         //    { "id": "ajson3", "parent": "ajson2", "text": "Child 1", icon: 'glyphicon glyphicon-folder-open', "a_attr": {type:'folder'} },
         //    { "id": "ajson4", "parent": "ajson2", "text": "Child 2", icon: 'glyphicon glyphicon-folder-open', "a_attr": {type:'folder'} },
     ];
-    for (i = 1; i <= 20000; i++) {
+    for (i = 1; i <= 20; i++) {
         id1 = "rParent" + i
         id2 = "#"
         id3 = "Node" + i;
